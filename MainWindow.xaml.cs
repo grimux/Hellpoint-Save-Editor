@@ -68,6 +68,7 @@ namespace Save_Editor {
                 }
 
                 toWrite += JsonConvert.SerializeObject(saveFile.world.sStates, Formatting.Indented) + "\r\n";
+                toWrite += JsonConvert.SerializeObject(saveFile.world.sCharacters, Formatting.Indented) + "\r\n";
 
                 foreach (var item in saveFile.player.items) {
                     if (Data.ALL_IDS.ContainsKey(item.id)) continue;

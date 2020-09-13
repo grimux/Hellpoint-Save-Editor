@@ -589,10 +589,10 @@
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
                               CanUserDeleteRows="False"
-                              ItemsSource="{Binding saveFile.world.sCharacters, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{Binding saveFile.world.namedSCharacters, UpdateSourceTrigger=PropertyChanged}"
                               SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Value.id, UpdateSourceTrigger=PropertyChanged}"
+                            <DataGridTextColumn Binding="{Binding Value.Id, UpdateSourceTrigger=PropertyChanged}"
                                                 Header="id"
                                                 IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding Value.name}"

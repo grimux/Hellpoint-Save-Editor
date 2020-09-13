@@ -10,13 +10,20 @@ namespace Save_Editor.Models {
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public class SCharacter {
-        public Guid id { get; set; }
+        private readonly Dictionary<Guid, SCharacter> source;
+
+        public SCharacter(Dictionary<Guid, SCharacter> source, Guid key) {
+            this.source = source;
+            Id          = key;
+        }
+
+        public Guid Id { get; set; }
 
         [JsonIgnore]
-        public string name => Data.ALL_IDS.ContainsKey(id) ? Data.ALL_IDS[id] : "";
+        public string name => Data.ALL_IDS.ContainsKey(Id) ? Data.ALL_IDS[Id] : "";
 
         [JsonIgnore]
-        public string factionName => Data.COVENANTS.ContainsKey(id) ? Data.COVENANTS[id] : "";
+        public string factionName => Data.COVENANTS.ContainsKey(Id) ? Data.COVENANTS[Id] : "";
 
         [JsonIgnore]
         public string factionNameOrId => factionName == "" ? factionId.ToString() : factionName;
@@ -31,6 +38,11 @@ namespace Save_Editor.Models {
         public bool  looted    { get; set; }
         public long  seed      { get; set; }
 
+        public SCharacter Value {
+            get => source[Id];
+            set => source[Id] = value;
+        }
+
         [JsonExtensionData]
 #pragma warning disable 169
 #pragma warning disable IDE0044 // Add readonly modifier
@@ -39,5 +51,6 @@ namespace Save_Editor.Models {
 #pragma warning restore IDE0051 // Remove unused private members
 #pragma warning restore IDE0044 // Add readonly modifier
 #pragma warning restore 169
+
     }
 }
